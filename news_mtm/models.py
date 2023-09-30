@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Category(models.Model):
@@ -6,14 +7,18 @@ class Category(models.Model):
 
     class Meta:
         app_label = "news_mtm"
-        ordering = ("name", )
+        ordering = ("name",)
         verbose_name = "category"
         verbose_name_plural = "categories"
+
+    def __str__(self):
+        return f"{self.name}"
+
 
 class News(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
-    publication_date = models.DateField()
+    publication_date = models.DateTimeField(default=timezone.now)
     categories = models.ManyToManyField(to=Category, blank=True, verbose_name="Категории")
 
     class Meta:
@@ -22,4 +27,5 @@ class News(models.Model):
         verbose_name = "Новость"
         verbose_name_plural = "Новости"
 
-
+    def __str__(self):
+        return self.title

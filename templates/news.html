@@ -1,126 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Title</title>
-    <link
-      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <div class="alo ary cfm">
-      <div class="gx ua ark ddh">
-        <div class="gx tv">
-          <h2 class="avs awd awx axv chx">From the blog</h2>
-          <p class="lb avz awr axs">
-            Learn how to grow your business with our expert advice.
-          </p>
-          <div class="kw abr afm afu auo bxa chf">
-            <article class="lx uk yr yx zf">
-              <div class="lx yz aag awc">
-                <time datetime="2020-03-16" class="axr">Mar 16, 2020</time
-                ><a href="#" class="ab eg ads aiq arf arq awe axs bic"
-                  >Marketing</a
-                >
-              </div>
-              <div class="bqg ab">
-                <h3 class="lf avz awg awp axv brn">
-                  <a href="#"
-                    ><span class="aa ak"></span>Boost your conversion rate</a
-                  >
-                </h3>
-                <p class="lj lt awa awp axs">
-                  Illo sint voluptas. Error voluptates culpa eligendi. Hic vel
-                  totam vitae illo. Non aliquid explicabo necessitatibus unde.
-                  Sed exercitationem placeat consectetur nulla deserunt vel
-                  iusto corrupti dicta laboris incididunt.
-                </p>
-              </div>
-              <div class="ab lm lx yz aag">
-                <img
-                  src="https://images.unsplash.com/photo-1519244703995-f4e0f30006d5?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                  alt=""
-                  class="nh rj ads aiq"
-                />
-                <div class="awa awp">
-                  <p class="awg axv">
-                    <a href="#"><span class="aa ak"></span>Michael Foster</a>
-                  </p>
-                  <p class="axs">Co-Founder / CTO</p>
-                </div>
-              </div>
-            </article>
-            <article class="lx uk yr yx zf">
-              <div class="lx yz aag awc">
-                <time datetime="2020-03-10" class="axr">Mar 10, 2020</time
-                ><a href="#" class="ab eg ads aiq arf arq awe axs bic">Sales</a>
-              </div>
-              <div class="bqg ab">
-                <h3 class="lf avz awg awp axv brn">
-                  <a href="#"
-                    ><span class="aa ak"></span>How to use search engine
-                    optimization to drive sales</a
-                  >
-                </h3>
-                <p class="lj lt awa awp axs">
-                  Optio sit exercitation et ex ullamco aliquid explicabo. Dolore
-                  do ut officia anim non ad eu. Magna laboris incididunt commodo
-                  elit ipsum.
-                </p>
-              </div>
-              <div class="ab lm lx yz aag">
-                <img
-                  src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                  alt=""
-                  class="nh rj ads aiq"
-                />
-                <div class="awa awp">
-                  <p class="awg axv">
-                    <a href="#"><span class="aa ak"></span>Lindsay Walton</a>
-                  </p>
-                  <p class="axs">Front-end Developer</p>
-                </div>
-              </div>
-            </article>
-            <article class="lx uk yr yx zf">
-              <div class="lx yz aag awc">
-                <time datetime="2020-02-12" class="axr">Feb 12, 2020</time
-                ><a href="#" class="ab eg ads aiq arf arq awe axs bic"
-                  >Business</a
-                >
-              </div>
-              <div class="bqg ab">
-                <h3 class="lf avz awg awp axv brn">
-                  <a href="#"
-                    ><span class="aa ak"></span>Improve your customer
-                    experience</a
-                  >
-                </h3>
-                <p class="lj lt awa awp axs">
-                  Dolore commodo in nulla do nulla esse consectetur. Adipisicing
-                  voluptate velit sint adipisicing ex duis elit deserunt sint
-                  ipsum. Culpa in exercitation magna adipisicing id
-                  reprehenderit consectetur culpa eu cillum.
-                </p>
-              </div>
-              <div class="ab lm lx yz aag">
-                <img
-                  src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=facearea&amp;facepad=2&amp;w=256&amp;h=256&amp;q=80"
-                  alt=""
-                  class="nh rj ads aiq"
-                />
-                <div class="awa awp">
-                  <p class="awg axv">
-                    <a href="#"><span class="aa ak"></span>Tom Cook</a>
-                  </p>
-                  <p class="axs">Director of Product</p>
-                </div>
-              </div>
-            </article>
+<html>
+<head>
+    <title>News</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <h1>News</h1>
+    <div class="all-objects">
+        <ul>
+          {% for item in news %}
+          <div class="todos">
+            <li>
+              <strong>{{ item.title }}</strong>
+            </li>
+            <li>
+              <p>{{ item.content }}</p>
+            </li>
+            <li>
+              {% for category in item.categories.all %}
+              <span>{{ category.name }}</span>
+              {% endfor %}
+              | {{ item.publication_date }}
+            </li>
           </div>
-        </div>
-      </div>
+          {% endfor %}
+        </ul>
+
     </div>
-  </body>
+</body>
 </html>
